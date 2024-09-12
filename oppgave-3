@@ -11,3 +11,22 @@ table: firstName :: String, lastName :: String, email :: String, gender :: Strin
   row: "Rivi", "Locke", "rlocke8@exblog.jp", "Female", "109.75.212.166", 51
   row: "Aretha", "Marconi", "amarconi9@gov.uk", "Female", "232.95.177.135", 86
 end
+
+
+oppg a)
+include shared-gdrive(
+  "dcic-2021",
+  "1wyQZj_L0qqV9Ekgr9au6RX2iqt2Ga8Ep")
+
+include gdrive-sheets
+include data-source
+ssid = "1RYN0i4Zx_UETVuYacgaGfnFcv4l9zd9toQTTdkQkj7g"
+
+o1-oppg3 = load-table: COL1, COL2, COL3, COL4, COL5, COL6, COL7
+  source: load-spreadsheet(ssid).sheet-by-name("o1-oppg3", true)
+end
+
+fun alder-navn(table):
+  filter-with(o1-oppg3, lam(row): (row["COL7"] <= 80) and (row["COL7"] >= 30)
+  end)
+end
